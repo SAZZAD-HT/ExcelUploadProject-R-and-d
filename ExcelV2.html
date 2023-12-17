@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmpEfficiencyExcelUpload</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./ExcelUpload.js"></script>
+</head>
+<body>
+    <h2>Upload Excel File</h2>
+    <label for="fileInput">Select Excel File:</label>
+    <input type="file" name="fileInput" id="fileInput" accept=".xlsx, .xls" />
+    <input type="button" onclick="ExcelPopulate.getDataofExcel()" value="Upload" />
+    
+</body>
+</html>
