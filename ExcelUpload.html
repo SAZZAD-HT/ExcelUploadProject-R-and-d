@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmpEfficiencyExcelUpload</title>
+    <script src="~/Scripts/PRODUCTION/EmpEff/EmployeeBuletinExcelSave.js"></script>
+    <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+
+</head>
+<body>
+    <h2>Upload Excel File</h2>
+    <label for="fileInput">Select Excel File:</label>
+    <input type="file" name="fileInput" id="fileInput" accept=".xlsx, .xls" />
+    <input type="submit" onclick="uploadFile()" value="Upload" />
+
+    <table id="table"></table>
+
+    <div id="headerDiv">
+        <label id="txtLine">Line no:</label>
+        <input type="text" id="lineNo">
+
+        <label>Input Date:</label>
+        <input type="text" id="inputDate">
+
+        <label>Buyer Id:</label>
+        <input type="text" id="buyerId">
+        <label>Buyer Name:</label>
+        <input type="text" id="buyerName">
+
+        <label>Style Id:</label>
+        <input type="text" id="styleId">
+        <label>Style Name:</label>
+        <input type="text" id="styleName">
+
+        <label>Item Id:</label>
+        <input type="text" id="itemId">
+        <label>Item Name:</label>
+        <input type="text" id="itemName">
+
+        <label>IE Target:</label>
+        <input type="text" id="ieTarget">
+        <label>Balancing Target:</label>
+        <input type="text" id="balancingTarget">
+    </div>
+
+    <div id="processDiv">
+        <!-- Process ID, Process Name, Target -->
+        <label>Process ID:</label>
+        <input type="text" id="processId">
+        <label>Process Name:</label>
+        <input type="text" id="processName">
+        <label>Target:</label>
+        <input type="text" id="processTarget">
+    </div>
+</body>
+</body>
+</html>
