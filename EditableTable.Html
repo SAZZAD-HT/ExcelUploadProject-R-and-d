@@ -28,6 +28,10 @@
             width: 100%;
             box-sizing: border-box;
         }
+
+        #addRowBtn {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +75,8 @@
         </tbody>
     </table>
 
+    <button id="addRowBtn" onclick="addRow()">Add Row</button>
+
     <script>
         function makeEditable(cell) {
             var value = cell.innerText;
@@ -84,6 +90,18 @@
             var cell = input.parentElement;
             var newValue = input.value;
             cell.innerText = newValue;
+        }
+
+        function addRow() {
+            var table = document.querySelector('table tbody');
+            var newRow = table.insertRow(table.rows.length);
+            for (var i = 0; i < 3; i++) {
+                var cell = newRow.insertCell(i);
+                cell.className = 'editable';
+                cell.onclick = function () { makeEditable(this); };
+                cell.innerText = '';
+            }
+            makeEditable(newRow.cells[0]);
         }
     </script>
 
