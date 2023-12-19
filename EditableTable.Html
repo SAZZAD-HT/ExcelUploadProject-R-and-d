@@ -94,14 +94,16 @@
 
         function addRow() {
             var table = document.querySelector('table tbody');
+            var lastRow = table.rows[table.rows.length - 1];
+            var lastDay = parseInt(lastRow.cells[0].innerText.split(' ')[0]);
             var newRow = table.insertRow(table.rows.length);
             for (var i = 0; i < 3; i++) {
                 var cell = newRow.insertCell(i);
                 cell.className = 'editable';
                 cell.onclick = function () { makeEditable(this); };
-                cell.innerText = '';
+                cell.innerText = i === 0 ? (lastDay + 1) + 'th Day' : '';
             }
-            makeEditable(newRow.cells[0]);
+            makeEditable(newRow.cells[1]); // Make the percentage field editable
         }
     </script>
 
