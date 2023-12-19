@@ -28,6 +28,7 @@ function addOrUpdateRow() {
     document.getElementById('nameInput').value = '';
 }
 
+
 function addRow(tbody, id, name) {
     const newRow = tbody.insertRow();
     const cellId = newRow.insertCell(0);
@@ -54,6 +55,7 @@ function addRow(tbody, id, name) {
     cellAction.appendChild(deleteButton);
 }
 
+
 function updateRow(row, id, name) {
     row.cells[0].textContent = id;
     row.cells[1].textContent = name;
@@ -70,9 +72,12 @@ function editRow(row) {
     row.parentNode.removeChild(row);
 }
 
+
 function deleteRow(row) {
     row.parentNode.removeChild(row);
 }
+
+
 
 function findRowByName(name) {
     const table = document.getElementById('dataTable');

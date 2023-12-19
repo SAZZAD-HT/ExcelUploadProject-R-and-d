@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Curve Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td.editable {
+            cursor: pointer;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Learning Curve</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Percentage</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="editable" onclick="makeEditable(this)">1st Day</td>
+                <td class="editable" onclick="makeEditable(this)">7%</td>
+                <td class="editable" onclick="makeEditable(this)">38</td>
+            </tr>
+            <tr>
+                <td class="editable" onclick="makeEditable(this)">2nd Day</td>
+                <td class="editable" onclick="makeEditable(this)">20%</td>
+                <td class="editable" onclick="makeEditable(this)">109</td>
+            </tr>
+            <tr>
+                <td class="editable" onclick="makeEditable(this)">3rd Day</td>
+                <td class="editable" onclick="makeEditable(this)">50%</td>
+                <td class="editable" onclick="makeEditable(this)">272</td>
+            </tr>
+            <tr>
+                <td class="editable" onclick="makeEditable(this)">4th Day</td>
+                <td class="editable" onclick="makeEditable(this)">75%</td>
+                <td class="editable" onclick="makeEditable(this)">408</td>
+            </tr>
+            <tr>
+                <td class="editable" onclick="makeEditable(this)">5th Day</td>
+                <td class="editable" onclick="makeEditable(this)">100%</td>
+                <td class="editable" onclick="makeEditable(this)">544</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function makeEditable(cell) {
+            var value = cell.innerText;
+            cell.innerHTML = '<input type="text" value="' + value + '" onblur="makeNonEditable(this)">';
+            var input = cell.querySelector('input');
+            input.focus();
+            input.select();
+        }
+
+        function makeNonEditable(input) {
+            var cell = input.parentElement;
+            var newValue = input.value;
+            cell.innerText = newValue;
+        }
+    </script>
+
+</body>
+</html>
