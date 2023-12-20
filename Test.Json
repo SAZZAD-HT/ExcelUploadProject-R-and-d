@@ -6,13 +6,13 @@
     "StyleName": "string",
     "ItemId": 0,
     "ItemName": "string",
-    "InputDate": "2023-12-19T10:06:41.401Z",
+    "InputDate": "2023-12-20T04:59:42.212Z",
     "Ietarget": 0,
     "BalancingTarget": 0,
     "LineId": 0,
     "IsActive": true,
     "CreatedBy": 0,
-    "CreatedDateTime": "2023-12-19T10:06:41.401Z",
+    "CreatedDateTime": "2023-12-20T04:59:42.212Z",
     "ExpectedEfficency": "string",
     "UnitId": 0,
     "BulletinRows": [
@@ -41,3 +41,4 @@
       }
     ]
   }
+  https://localhost:5050/api/ProductionEmpEfficiency/CreateUpdateBulletin
