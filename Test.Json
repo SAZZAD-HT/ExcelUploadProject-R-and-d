@@ -1,0 +1,43 @@
+{
+    "BpHeaderId": 0,
+    "BuyerId": 0,
+    "BuyerName": "string",
+    "StyleId": 0,
+    "StyleName": "string",
+    "ItemId": 0,
+    "ItemName": "string",
+    "InputDate": "2023-12-19T10:06:41.401Z",
+    "Ietarget": 0,
+    "BalancingTarget": 0,
+    "LineId": 0,
+    "IsActive": true,
+    "CreatedBy": 0,
+    "CreatedDateTime": "2023-12-19T10:06:41.401Z",
+    "ExpectedEfficency": "string",
+    "UnitId": 0,
+    "BulletinRows": [
+      {
+        "AutoId": 0,
+        "ProcessName": "string",
+        "MachineName": "string",
+        "Tmu": 0,
+        "BpHeaderId": 0,
+        "Smv": 0,
+        "TargetHr100Percentage": 0,
+        "BlnTargetHr": 0,
+        "Tml": 0,
+        "Aml": 0,
+        "TargetDay": 0,
+        "IsActive": true
+      }
+    ],
+    "LerningCurves": [
+      {
+        "Lid": 0,
+        "Day": "string",
+        "Percentage": "string",
+        "Value": 0,
+        "BpheaderId": 0
+      }
+    ]
+  }
