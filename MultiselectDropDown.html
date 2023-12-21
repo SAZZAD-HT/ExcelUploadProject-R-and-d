@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Data from Multi-Select Dropdown</title>
+    <!-- Include Bootstrap CSS (for styling) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <label for="fruits">Select Fruits:</label>
+    <select id="fruits" name="fruits[]" multiple>
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="orange">Orange</option>
+        <option value="grape">Grape</option>
+        <option value="strawberry">Strawberry</option>
+    </select>
+
+    <button onclick="getSelectedValues()">Get Selected Values</button>
+
+    <script>
+        function getSelectedValues() {
+            var selectedValues = [];
+            var selectElement = document.getElementById('fruits');
+
+            // Iterate through each option
+            for (var i = 0; i < selectElement.options.length; i++) {
+                var option = selectElement.options[i];
+
+                // Check if the option is selected
+                if (option.selected) {
+                    selectedValues.push(option.value);
+                }
+            }
+
+            // Display the selected values (you can use them as needed)
+            alert('Selected Values: ' + selectedValues.join(', '));
+        }
+    </script>
+
+    <!-- Include Bootstrap JS (for styling) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
