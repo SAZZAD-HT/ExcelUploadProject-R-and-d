@@ -7,28 +7,21 @@
 </head>
 <body>
 
-    <label for="buyerDropdown">Select Buyer:</label>
-    <select id="buyerDropdown"></select>
+    <div id ="number">
+        
+    </div>
+    <!-- <label for="buyerDropdown">Select Buyer:</label>
+    <select id="buyerDropdown"></select> -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Get the dropdown element
-            const buyerDropdown = document.getElementById("buyerDropdown");
-
-            // Make a request to the API
-            fetch("http://192.168.0.11:8080/Buyer/GetAllBuyers")
-                .then(response => response.json())
-                .then(data => {
-                    // Populate the dropdown with the received data
-                    data.forEach(buyer => {
-                        const option = document.createElement("option");
-                        option.value = buyer.Buyer_id;
-                        option.text = buyer.Buyer_name;
-                        buyerDropdown.appendChild(option);
-                    });
-                })
-                .catch(error => console.error("Error fetching data:", error));
-        });
+        let html = "";
+        var number = 1;
+        for(let i = 1; i<=1000; i++){
+            html+=`<h3>${number}</h3>`
+            number++;
+        }
+        document.getElementById("number").innerHTML = html ;
+      
     </script>
 
 </body>
