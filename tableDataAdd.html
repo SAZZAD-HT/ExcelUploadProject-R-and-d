@@ -1,33 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Manipulation Example</title>
+    <base href="https://demos.telerik.com/kendo-ui/multiselect/index">
+    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link href="https://kendo.cdn.telerik.com/themes/7.0.2/default/default-main.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <script src="https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js"></script>
+    
+    
 </head>
 <body>
+    <script id="noDataTemplate" type="text/x-kendo-tmpl">
+	<div class="kd-nodata-wrapper">
+		# var value = instance.input.val(); #
+		# var id = instance.element[0].id; #
+		<div>
+		    No data found. Do you want to add new item - '#: value #' ?
+		</div>
+		<br />
+		<button class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md" onclick="addNew('#: id #', '#: value #')" ontouchend="addNew('#: id #', '#: value #')">Add new item</button>
+    <div>
+</script>
 
-    <h2>Data Table</h2>
 
-    <table id="dataTable" border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table body will be populated dynamically -->
-        </tbody>
-    </table>
 
-    <br>
 
-    <label for="nameInput">Name:</label>
-    <input type="text" id="nameInput">
-    <button onclick="addOrUpdateRow()">Add or Update</button>
+      
+		
+        <select id="multiselect"></select>
+      
 
-    <script src="tabledatAdd.js"></script>
+
+<style>
+    
+</style>
+
+<script>
+	
+
+    $(document).ready(function() {
+        // create MultiSelect from input HTML element
+		var dataSource = new kendo.data.DataSource({
+		  data: [
+		   	{ Id: 1, sportName: "Basketball"},
+			{ Id: 2, sportName: "Golf"},
+			{ Id: 3, sportName: "Baseball"},
+			{ Id: 4, sportName: "Table Tennis"},
+			{ Id: 5, sportName: "Volleyball"},
+			{ Id: 6, sportName: "Football"},
+			{ Id: 7, sportName: "Boxing"},
+			{ Id: 8, sportName: "Badminton"},
+			{ Id: 9, sportName: "Cycling"},
+			{ Id: 10, sportName: "Gymnastics"},
+			{ Id: 11, sportName: "Swimming"},
+			{ Id: 12, sportName: "Wrestling"},
+			{ Id: 13, sportName: "Snooker"},
+			{ Id: 14, sportName: "Skiing"},
+			{ Id: 15, sportName: "Handball"}
+		  ],
+		  sort: { field: "sportName", dir: "asc" }
+		});
+
+        $("#multiselect").kendoMultiSelect({
+            dataTextField: "sportName",
+            dataValueField: "Id",
+            dataSource: dataSource,
+            filter: "contains",
+			placeholder: "Please select your favourite sport...",
+			downArrow: true,
+			noDataTemplate: $("#noDataTemplate").html()
+        });
+    });
+</script>
+
+
 </body>
 </html>
