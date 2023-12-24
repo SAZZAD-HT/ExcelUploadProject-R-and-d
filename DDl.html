@@ -13,15 +13,70 @@
     <!-- <label for="buyerDropdown">Select Buyer:</label>
     <select id="buyerDropdown"></select> -->
 
+    <div>
+        <input type="text" id="input">
+        <select id="select">
+            <option class="option" value="1">Mango</option>
+            <option class="option" value="2">Apple</option>
+            <option class="option" value="3">Banana</option>
+        </select>
+    </div>
+
+    <div id="data">
+
+    </div>
+
     <script>
-        let html = "";
-        var number = 1;
-        for(let i = 1; i<=1000; i++){
-            html+=`<h3>${number}</h3>`
-            number++;
+        const selecdtedValue = [
+            
+        ];
+        const options = [
+            {
+                "id": 1,
+                "name": "Mango"
+            },
+            {
+                "id": 2,
+                "name": "Apple"
+            },
+            {
+                "id": 3,
+                "name": "Banana"
+            }
+        ]
+        const renderOptions = (options, selected) => {
+            const select = document.querySelector('#select')
+            select.innerHTML = '';
+            let isFound = false;
+            options.forEach(option => {
+                selected.forEach((id)=>{
+                    console.log(id, option.id)
+                    if(id == option.id){
+                        isFound = true;
+                    }
+                })
+                if(!isFound){
+                    const optionElement = document.createElement('option')
+                    optionElement.value = option.id
+                    optionElement.innerText = option.name
+                    optionElement.classList.add('option')
+                    select.appendChild(optionElement)
+                }
+            })
         }
-        document.getElementById("number").innerHTML = html ;
-      
+        renderOptions(options, selecdtedValue);
+        
+
+        const select = document.querySelector('#select')
+        select.addEventListener('change', (e)=>{
+                const selectedOption = e.target;
+                const selectedOptionValue = selectedOption.value;
+                selecdtedValue.push(selecdtedValue);
+                renderOptions(options, selecdtedValue);
+                console.log(selecdtedValue);
+        })
+
+        
     </script>
 
 </body>
