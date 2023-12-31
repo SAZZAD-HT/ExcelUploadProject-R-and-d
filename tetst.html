@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hourly Data Tables</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Data will be dynamically added here -->
+    <div id="tablesContainer"></div>
+
+    <script>
+        // Your provided data
+        const data = [
+            {
+                "EmpEffId": 688817,
+                "HourlyData": [
+                    { "HourNo": 1, "ProdQty": 100 },
+                    { "HourNo": 2, "ProdQty": 100 },
+                    { "HourNo": 3, "ProdQty": 100 },
+                    { "HourNo": 4, "ProdQty": 120 },
+                    { "HourNo": 5, "ProdQty": 120 },
+                    { "HourNo": 6, "ProdQty": 120 },
+                    { "HourNo": 7, "ProdQty": 120 },
+                    { "HourNo": 8, "ProdQty": 120 }
+                ]
+            },
+            {
+                "EmpEffId": 1,
+                "HourlyData": [
+                    { "HourNo": 1, "ProdQty": 0 },
+                    { "HourNo": 2, "ProdQty": 0 },
+                    { "HourNo": 3, "ProdQty": 0 },
+                    { "HourNo": 4, "ProdQty": 0 },
+                    { "HourNo": 5, "ProdQty": 0 },
+                    { "HourNo": 6, "ProdQty": 0 },
+                    { "HourNo": 7, "ProdQty": 120 },
+                    { "HourNo": 8, "ProdQty": 0 }
+                ]
+            }
+        ];
+
+        // Function to create table rows dynamically
+        function createTableRows(data) {
+            const tablesContainer = document.getElementById('tablesContainer');
+
+            data.forEach(item => {
+                const table = document.createElement('table');
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>EmpEffId: ${item.EmpEffId}</th>
+                            <th>Hour</th>
+                            <th>ProdQty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be dynamically added here -->
+                    </tbody>
+                `;
+
+                const tbody = table.getElementsByTagName('tbody')[0];
+            
+                item.HourlyData.forEach(hourData => {
+                    const row = tbody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+
+                    cell1.textContent = item.EmpEffId;
+                    cell2.textContent = hourData.HourNo;
+                    cell3.textContent = hourData.ProdQty;
+                });
+
+                tablesContainer.appendChild(table);
+            });
+        }
+
+        // Call the function with your data
+        createTableRows(data);
+    </script>
+
+</body>
+</html>

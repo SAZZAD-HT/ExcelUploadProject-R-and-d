@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Process Setup</title>
+</head>
+<body>
+
+    <h2>Master Process Setup</h2>
+
+    <form id="processSetupForm">
+        <label for="processCode">Process Code:</label>
+        <input type="text" id="processCode" name="ProcessCode" required><br>
+
+        <label for="processName">Process Name:</label>
+        <input type="text" id="processName" name="ProcessName" required><br>
+
+        <label for="target100">Target 100:</label>
+        <input type="number" id="target100" name="Target100" required><br>
+
+        <label for="smv">SMV:</label>
+        <input type="number" id="smv" name="Smv" required><br>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="Image" accept="image/*" required><br>
+
+        <label for="isActive">Is Active:</label>
+        <input type="checkbox" id="isActive" name="IsActive" checked><br>
+
+        <button type="button" onclick="uploadData()">Upload Data</button>
+    </form>
+
+    <script>
+        function getBase64(file, callback) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                callback(reader.result.split(',')[1]);
+            };
+            reader.onerror = function (error) {
+                console.error('Error reading file:', error);
+            };
+        }
+
+        function uploadData() {
+            const formData = new FormData(document.getElementById('processSetupForm'));
+
+            // Convert checkbox value to boolean
+            formData.set('IsActive', document.getElementById('isActive').checked);
+
+            // Convert image file to base64 string
+            const imageInput = document.getElementById('image');
+            const imageFile = imageInput.files[0];
+            if (imageFile) {
+                getBase64(imageFile, (base64Image) => {
+                    formData.set('Image', base64Image);
+
+                    // Send data to API
+                    fetch('https://localhost:5050/api/ProductionEmpEfficiency/MasterProcessSetup', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                             'Content-Type': 'multipart/form-data',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Data saved successfully:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error saving data:', error);
+                    });
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
