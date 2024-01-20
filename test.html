@@ -3,123 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Data with Line Effect</title>
+    <title>Employee Management</title>
     <style>
+        /* Add your styles here */
+
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
         table {
+            width: 100%;
             border-collapse: collapse;
-            width: 50%;
+            margin-bottom: 20px;
         }
 
         th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
+            border: 1px solid #ddd;
             padding: 8px;
+            text-align: left;
         }
 
         th {
             background-color: #f2f2f2;
         }
 
-        .saved {
-            background-color: #8bc34a;
+        .edit-btn {
+            cursor: pointer;
+            color: blue;
         }
 
-        .not-saved {
-            background-color: #ff5722;
+        /* Styling for overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Styling for modal */
+        .modal {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <table id="data-table">
+
+    <!-- Table of employees -->
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Status</th>
+                <th>Email</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>1</td>
                 <td>John Doe</td>
-                <td class="status">Pending</td>
+                <td>john.doe@example.com</td>
+                <td><span class="edit-btn" onclick="openEditModal(1)">Edit</span></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr> <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr> <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr> <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr> <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr> <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr> <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td class="status">Pending</td>
-            </tr>
-            <!-- Add more rows as needed -->
+            <!-- Add more employee rows as needed -->
         </tbody>
     </table>
 
+    <!-- Edit Employee Modal -->
+    <div class="overlay" id="editModalOverlay">
+        <!-- Modal content -->
+        <div class="modal">
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Employee</h2>
+            <form id="editForm">
+                <label for="editName">Name:</label>
+                <input type="text" id="editName" name="editName" required>
+                <br>
+                <label for="editEmail">Email:</label>
+                <input type="email" id="editEmail" name="editEmail" required>
+                <br>
+                <button type="button" onclick="saveEmployee()">Save</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const rows = document.querySelectorAll("#data-table tbody tr");
+        let currentEmployeeId;
 
-            rows.forEach((row, index) => {
-             
-                const statusCell = row.querySelector(".status");
-                const delay =20000; // 10 seconds for ID 1, 5 seconds for others
+        function openEditModal(employeeId) {
+            currentEmployeeId = employeeId;
+            // Fetch employee data from your API based on employeeId and populate the form
+            document.getElementById("editName").value = "John Doe"; // Replace with actual data
+            document.getElementById("editEmail").value = "john.doe@example.com"; // Replace with actual data
 
+            document.getElementById("editModalOverlay").style.display = "flex";
+        }
 
-                simulateAPICall(row, delay)
-                    .then(() => {
-                        statusCell.textContent = "Saved";
-                        row.classList.add("saved");
-                    })
-                    .catch(() => {
-                        statusCell.textContent = "Not Saved";
-                        row.classList.add("not-saved");
-                    });
-            });
-            
+        function closeEditModal() {
+            document.getElementById("editModalOverlay").style.display = "none";
+        }
 
-            function simulateAPICall(row, delay) {
-                return new Promise((resolve, reject) => {
-                  
-                    setTimeout(() => {
-                        // Simulate success or failure
-                        debugger;
-                        const isSuccess = Math.random() < 0.5; // 80% success rate
-                        isSuccess ? resolve() : reject();
-                    }, delay);
-                });
-            }
-        });
+        function saveEmployee() {
+            // Simulate API call to save edited employee data
+            alert("Employee data saved!"); // Replace with actual API call
+
+            // Close the modal after saving
+            closeEditModal();
+        }
     </script>
+
 </body>
 </html>

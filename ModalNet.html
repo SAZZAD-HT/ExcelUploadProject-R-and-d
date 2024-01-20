@@ -1,0 +1,60 @@
+<!-- Your HTML code for the table --><script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<table id="exampleTable">
+    <thead>
+        <!-- Table header columns -->
+    </thead>
+    <tbody>
+        <tr data-id="1" data-name="John Doe" data-role="Developer">
+            <!-- Other table row data -->
+            <td>
+                <button class="btn btn-primary edit-button">Edit</button>
+            </td>
+        </tr>
+        <!-- Additional table rows -->
+    </tbody>
+</table>
+
+<!-- Your HTML code for the modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <!-- Modal content -->
+    <!-- ... (rest of your modal code) ... -->
+    <div class="modal-body">
+        <!-- Display data using <p> tags -->
+        <p><strong>ID:</strong> <span id="modalId"></span></p>
+        <p><strong>Name:</strong> <span id="modalName"></span></p>
+        <p><strong>Role:</strong> <span id="modalRole"></span></p>
+        <!-- Add other fields as needed -->
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Function to be called when the modal is opened
+        function onModalOpened(rowData) {
+            // Populate the modal with the data from the clicked row
+            $('#modalId').text(rowData.id);
+            $('#modalName').text(rowData.name);
+            $('#modalRole').text(rowData.role);
+            // Add other fields as needed
+
+            // Your code here to display or use the data as needed
+            console.log("Modal opened with data:", rowData);
+        }
+
+        // Attach click event to the "Edit" buttons
+        $('#exampleTable').on('click', '.edit-button', function () {
+            // Get the data associated with the clicked row
+            var rowData = {
+                id: $(this).closest('tr').data('id'),
+                name: $(this).closest('tr').data('name'),
+                role: $(this).closest('tr').data('role')
+                // Add other data fields
+            };
+
+            // Open the modal and pass the data
+            $('#exampleModalLong').modal('show');
+            onModalOpened(rowData);
+        });
+    });
+</script>
